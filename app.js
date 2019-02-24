@@ -8,7 +8,7 @@ const app = express();
 const socketIO = require('socket.io');
 const server = express()
   .use(app)
-  .listen(3000, () => console.log(`Listening Socket on ${ 3000 }`));
+  .listen(process.env.PORT || 5000, () => console.log(`Listening Socket on ${ 3000 }`));
 const io = socketIO(server);
 
 
