@@ -20,7 +20,7 @@ client.on('message', async(message) => {
 
     let args = message.content.split(" ").slice(1);
 
-    if(command === "test"){		
+    if(command === "contagem"){		
 		app.play();
     }
 });
