@@ -11,8 +11,8 @@ var discAutorizados, salasAutorizadas;
 
 client.on('ready', () => {
     app.startApp(client);
-	client.user.username="ReifelTracker";
-	client.user.setUsername("ReifelTracker");
+	client.user.username="ReifelContagem";
+	client.user.setUsername("ReifelContagem");
 	
 	client.channels.get("459432939898273798").fetchMessage('461722127205269505')
 			  .then(message => {
