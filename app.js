@@ -1,8 +1,11 @@
+var compression = require('compression')
 const express = require('express');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 
 const app = express();
+
+app.use(compression()); //gzip
 
 //socketio
 const socketIO = require('socket.io');
