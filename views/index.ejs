@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" class="backgroundImage">
+<head>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>ReifelContador</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+</head>
+<style>
+.principal {
+  color: #1d2129;
+  position: absolute;
+  margin: 0 auto;
+  top: 33%;
+  text-align: center;
+  width: 100%;
+  font-family: 'Nunito', sans-serif; !important
+}
+
+.principal .heading-count h2 {
+  font-size: 48px;
+  color: #1d2129;
+  line-height: 30px;
+  margin-bottom: 15px;
+}
+
+.transparent {
+  font-size: 15px;
+  line-height: 22px;
+  
+  background: rgba(0, 0, 0, 0.44); /* Black background with 0.5 opacity */
+  color: #f1f1f1;
+  padding: 20px;
+  border-radius: 25px;
+  margin-left:20%;
+  margin-right:20%;
+
+}
+
+.backgroundImage {
+  background: url("https://i.redd.it/ktkf3qy7afi21.png") no-repeat;
+  background-size: cover; /* background size */
+  min-height: 100%; /* Set the minimum height of a element */
+  width:100%;
+  height:100%;
+  
+}
+
+html { overflow-x: hidden; }
+
+</style>
+<body>
+
+    <section class="principal">
+      <div class="text-center">
+            <div class="heading-count">
+              <h2>AGUARDE A CONTAGEM</h2>
+            </div>
+			<div class="row">
+				<div class="col-md-12 text-center">
+					<div class="transparent">
+					  <ul class="text-left" style="margin:0;display:inline-block;vertical-align:middle;">
+						<li>Não feche essa página, o áudio da contagem do bot acontece nela</li>
+						<li>Quando o bot falar "JÁ" clique no botão do jogo para entrar na partida</li>
+					  </ul>
+					</div>
+				</div>
+			</div>
+      </div>
+    </section>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="../scripts/dashboard.js"></script>
+<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.slim.js"></script>
+<audio preload="auto" id="audiotag1" src="https://www.myinstants.com/media/sounds/melhorado-galvao-robo.mp3"></audio>
+
+<script>
+	const audioGal = "https://www.myinstants.com/media/sounds/melhorado-galvao-robo.mp3";
+	var socket = io.connect('http://localhost:3000');
+	
+	//var mySound = new Audio(audioGal);
+	//mySound.load();
+	
+	var audioElement = document.getElementById('audiotag1');
+	audioElement.load();
+	
+	errorHappens();
+	audioElement.addEventListener("ended", reload());
+	
+	socket.on('message', function(data){
+		//mySound.play();
+		//audioElement.play();
+		
+		 forcePlay();
+	});
+	
+	function reload(){
+		if(!audioElement.paused) return; //isplaying
+		console.log("recarreguei");
+		audioElement.load();
+	}
+	
+	function errorHappens(){
+		const urlParams = new URLSearchParams(window.location.search);
+		const myParam = urlParams.get('error');
+		if(myParam) forcePlay();
+	}
+	
+	function forcePlay(a){
+		var playPromise = audioElement.play();
+		if (playPromise !== null){
+			playPromise.catch(() => { 
+				//alert("reload page"); 
+				//location.reload();
+					playPromise = audioElement.play();
+					if (playPromise !== null){
+						playPromise.catch(() => { 
+							//alert("reload page"); 
+							//location.reload();						
+							window.location.href = window.location.origin + "/?error=1";				
+						});			
+					}
+			});
+		}
+	}
+</script>
+</body>
+</html>
