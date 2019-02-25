@@ -44,7 +44,7 @@ client.on('message', async(message) => {
     let args = message.content.split(" ").slice(1);
 
     if(command === "contagem"){
-	    if(message.author == reifelUser || message.author.roles.has("549480273692065805")){
+	    if(message.author == reifelUser || message.member.roles.has("549480273692065805")){
 		    app.play();
 	    }
 		
