@@ -172,11 +172,13 @@ li{
 			});
 		}
 	}
+	const msgGo = "GO!";
+	function alertGo(){
+		window.confirm(msgGo);
+	}
 	
 	function alertVisual(){
-		setTimeout(function (){
-			window.confirm("GO!");
-		}, 7016);
+		setTimeout(alertGo, 7010);
 		
 	}
 </script>
