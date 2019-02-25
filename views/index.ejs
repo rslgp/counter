@@ -49,11 +49,6 @@
 
 html { overflow-x: hidden; }
 
-/* Smartphones ----------- */
-@media only screen and (max-width: 800px) {
-  #mobilesupport { height: 1; !important }
-}
-
 </style>
 <body>
 
@@ -74,7 +69,6 @@ html { overflow-x: hidden; }
 			</div>
       </div>
     </section>
-    <a id="mobilesupport" hidden style="height:0"></p>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.slim.js"></script>
@@ -88,7 +82,8 @@ html { overflow-x: hidden; }
 	//mySound.load();
 	
 	var audioElement = document.getElementById('audiotag1');
-	var isMobile = document.getElementById('mobilesupport').style.height[0]=="1";
+	var isMobile = (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent));
+	
 	audioElement.load();
 	
 	errorHappens();
@@ -114,7 +109,7 @@ html { overflow-x: hidden; }
 	}
 	
 	function forcePlay(a){
-		if(isMobile==1) {alertVisual(); return;}
+		if(isMobile) {alertVisual(); return;}
 		
 		var playPromise = audioElement.play();
 		if (playPromise !== null){
