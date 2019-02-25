@@ -7,7 +7,7 @@ const app = require("./app");
 
 const commandPrefix = "!";
 
-var discAutorizados, salasAutorizadas;
+var discAutorizados, salasAutorizadas, reifelUser;
 
 client.on('ready', () => {
     app.startApp(client);
@@ -21,6 +21,9 @@ client.on('ready', () => {
 					salasAutorizadas = obj["salas"];
 			} )
 			  .catch(console.error);
+	
+	reifelUser = client.users.get('195731919424585728');
+
 });
 
 client.on('message', async(message) => {
@@ -40,8 +43,11 @@ client.on('message', async(message) => {
 
     let args = message.content.split(" ").slice(1);
 
-    if(command === "contagem"){		
-		app.play();
+    if(command === "contagem"){
+	    if(message.author == reifelUser){
+		    app.play();
+	    }
+		
     }
 });
 client.login(process.env.BOT_TOKEN);
