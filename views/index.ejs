@@ -90,7 +90,7 @@ html { overflow-x: hidden; }
 	socket.on('message', function(data){
 		//mySound.play();
 		//audioElement.play();
-		
+		alertVisual();
 		 forcePlay();
 	});
 	
@@ -122,6 +122,13 @@ html { overflow-x: hidden; }
 					}
 			});
 		}
+	}
+	
+	function alertVisual(){
+		setTimeout(function (){
+			alert("JA!");
+		}, 7051);
+		
 	}
 </script>
 </body>
