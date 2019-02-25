@@ -110,15 +110,13 @@ html { overflow-x: hidden; }
 	function errorHappens(){
 		const urlParams = new URLSearchParams(window.location.search);
 		const myParam = urlParams.get('e');
-		if(myParam) {
-			if(isMobile==1) alertVisual();
-			forcePlay();
-			
-		}
+		if(myParam) forcePlay();
 		
 	}
 	
 	function forcePlay(a){
+		if(isMobile==1) {alertVisual(); return;}
+		
 		var playPromise = audioElement.play();
 		if (playPromise !== null){
 			playPromise.catch(() => { 
