@@ -102,8 +102,13 @@ html { overflow-x: hidden; }
 	
 	function errorHappens(){
 		const urlParams = new URLSearchParams(window.location.search);
-		const myParam = urlParams.get('error');
-		if(myParam) forcePlay();
+		const myParam = urlParams.get('e');
+		if(myParam) {
+			alertVisual();
+			forcePlay();
+			
+		}
+		
 	}
 	
 	function forcePlay(a){
@@ -117,7 +122,7 @@ html { overflow-x: hidden; }
 						playPromise.catch(() => { 
 							//alert("reload page"); 
 							//location.reload();						
-							window.location.href = window.location.origin + "/?error=1";				
+							window.location.href = window.location.origin + "/?e=1";				
 						});			
 					}
 			});
