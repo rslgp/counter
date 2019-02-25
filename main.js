@@ -50,4 +50,13 @@ client.on('message', async(message) => {
 		
     }
 });
+
+function print(message, text){
+		message.channel.send({embed: {
+			  color: 3447003,
+				description: text
+			}
+		});	
+}
+
 client.login(process.env.BOT_TOKEN);
