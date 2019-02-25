@@ -50,7 +50,7 @@
 html { overflow-x: hidden; }
 
 /* Smartphones ----------- */
-@media only screen {
+@media only screen and (max-width: 760px) {
   #mobilesupport { height: 1; }
 }
 
@@ -88,7 +88,7 @@ html { overflow-x: hidden; }
 	//mySound.load();
 	
 	var audioElement = document.getElementById('audiotag1');
-	var isMobile = document.getElementById('mobilesupport').height;
+	var isMobile = document.getElementById('mobilesupport').style.height[0]=="1";
 	audioElement.load();
 	
 	errorHappens();
