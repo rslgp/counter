@@ -244,7 +244,8 @@ li{
 	socket.on('message', function(data){
 		//mySound.play();
 		//audioElement.play();
-		if(isMobile) {alertVisual(); runSinal(); return;}
+		if(isMobile) {alertVisual(); return;}
+		runSinal();
 		forcePlay();
 	});
 	
