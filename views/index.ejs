@@ -300,7 +300,7 @@ function runSinal(){
 	socket.on('message', function(data){
 		//mySound.play();
 		//audioElement.play();
-		if(isMobile) {alertVisual(); return;}
+		if(isMobile) {alertVisual(); runSinal(); return;}
 		forcePlay();
 	});
 	
