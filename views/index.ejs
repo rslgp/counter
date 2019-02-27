@@ -244,9 +244,10 @@ li{
 	socket.on('message', function(data){
 		//mySound.play();
 		//audioElement.play();
-		runSinal();
-		if(isMobile) {alertVisual(); return;}
+		
+		if(isMobile) {alertVisual(); runSinal();return;}
 		forcePlay();
+		runSinal();
 	});
 	
 	function reload(){
