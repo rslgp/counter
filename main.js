@@ -55,7 +55,7 @@ client.on('message', async(message) => {
     if(command === "add"){
 			if(message.author!=reifelUser) return;
 			
-			var novo = nickLegivel.split("+");
+			var novo = args.split("+");
 			
 			
 			//client.channels.get("459432939898273798").send('{ "discords":[368240657816354836,377628278627893248,363610360688672778], "salas":[387003077695373315,428883305874718731] }');
