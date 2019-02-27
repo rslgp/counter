@@ -92,7 +92,7 @@ li{
     <section class="principal">
       <div class="text-center">
             <div class="heading-count">
-              <h2>AGUARDE A CONTAGEM</h2>
+              <h2 id="gonotify">AGUARDE A CONTAGEM</h2>
             </div>
 			<div class="row">
 				<div class="col-md-12 text-center">
@@ -175,6 +175,15 @@ li{
 	const msgGo = "GO!";
 	function alertGo(){
 		window.confirm(msgGo);
+	}
+	var goElement = document.getElementById('gonotify');
+	
+	function goHeader(){
+		setTimeout(function (){
+			goElement.innerHTML = "<b style='color:red'> GO! </b>";
+		}, 7000);
+		goElement.innerHTML = "AGUARDE A CONTAGEM";
+		
 	}
 	
 	function alertVisual(){
