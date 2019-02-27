@@ -154,8 +154,8 @@ li{
 	}
 	
 	function forcePlay(a){
-		if(isMobile) {alertVisual(); return;}
 		goHeader();
+		if(isMobile) {alertVisual(); return;}
 		
 		var playPromise = audioElement.play();
 		if (playPromise !== null){
