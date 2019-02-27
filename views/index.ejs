@@ -85,6 +85,64 @@ li{
 	padding-bottom:10px;
 }
 
+#modalContainer {
+	background-color:rgba(0, 0, 0, 0.3);
+	position:absolute;
+  top:0;
+	width:100%;
+	height:100%;
+	left:0px;
+	z-index:10000;
+	background-image:url(tp.png); /* required by MSIE to prevent actions on lower z-index elements */
+}
+
+#alertBox {
+	position:relative;
+	width:33%;
+	min-height:100px;
+  max-height:400px;
+	margin-top:50px;
+	border:1px solid #fff;
+	background-color:#fff;
+	background-repeat:no-repeat;
+  top:30%;
+}
+
+#modalContainer > #alertBox {
+	position:fixed;
+}
+
+#alertBox h1 {
+	margin:0;
+	font:bold 1em Raleway,arial;
+	background-color:#f97352;
+	color:#FFF;
+	border-bottom:1px solid #f97352;
+	padding:10px 0 10px 5px;
+}
+
+#alertBox p {
+	padding-left:5px;
+  text-align:center;
+  vertical-align:middle;
+}
+
+#alertBox #closeBtn {
+	display:block;
+	position:relative;
+	margin:10px auto 10px auto;
+	padding:7px;
+	border:0 none;
+	width:70px;
+	text-transform:uppercase;
+	text-align:center;
+	color:#FFF;
+	background-color:#f97352;
+	border-radius: 0px;
+	text-decoration:none;
+  outline:0!important;
+}
+
 
 </style>
 <body>
@@ -157,7 +215,7 @@ li{
 	function forcePlay(a){
 		
 		//if(isMobile) {alertVisual(); return;}
-		goHeader();
+		//goHeader();
 		var playPromise = audioElement.play();
 		if (playPromise !== null){
 			playPromise.catch(() => { 
@@ -192,6 +250,53 @@ li{
 		setTimeout(alertGo, 6922);
 		
 	}
+	
+	//alert
+	
+var ALERT_TITLE = "GO!";
+var ALERT_BUTTON_TEXT = "Ok";
+
+window.alert = function(txt) {
+	createCustomAlert(txt);
+}
+
+function createCustomAlert(txt) {
+	d = document;
+
+	if(d.getElementById("modalContainer")) return;
+
+	mObj = d.getElementsByTagName("body")[0].appendChild(d.createElement("div"));
+	mObj.id = "modalContainer";
+	mObj.onclick=function() { removeCustomAlert();return false; };
+	mObj.style.height = d.documentElement.scrollHeight + "px";
+	
+	alertObj = mObj.appendChild(d.createElement("div"));
+	alertObj.id = "alertBox";
+	if(d.all && !window.opera) alertObj.style.top = document.documentElement.scrollTop + "px";
+	alertObj.style.left = (d.documentElement.scrollWidth - alertObj.offsetWidth)/2 + "px";
+	alertObj.style.visiblity="visible";
+
+	h1 = alertObj.appendChild(d.createElement("h1"));
+	h1.appendChild(d.createTextNode(ALERT_TITLE));
+
+	msg = alertObj.appendChild(d.createElement("p"));
+	//msg.appendChild(d.createTextNode(txt));
+	msg.innerHTML = txt;
+
+	btn = alertObj.appendChild(d.createElement("a"));
+	btn.id = "closeBtn";
+	btn.appendChild(d.createTextNode(ALERT_BUTTON_TEXT));
+	btn.href = "#";
+	btn.focus();
+	btn.onclick = function() { removeCustomAlert();return false; }
+
+	alertObj.style.display = "block";
+	
+}
+
+function removeCustomAlert() {
+	document.getElementsByTagName("body")[0].removeChild(document.getElementById("modalContainer"));
+}
 </script>
 
 </body>
