@@ -138,7 +138,6 @@ li{
 		//mySound.play();
 		//audioElement.play();
 		forcePlay();
-		goHeader();
 	});
 	
 	function reload(){
@@ -156,6 +155,7 @@ li{
 	
 	function forcePlay(a){
 		if(isMobile) {alertVisual(); return;}
+		goHeader();
 		
 		var playPromise = audioElement.play();
 		if (playPromise !== null){
@@ -182,8 +182,8 @@ li{
 	function goHeader(){
 		setTimeout(function (){
 			goElement.innerHTML = "<b style='color:red'> GO! </b>";
+			setTimeout(function(){goElement.innerHTML = "AGUARDE A CONTAGEM";},4100);
 		}, 7000);
-		goElement.innerHTML = "AGUARDE A CONTAGEM";
 		
 	}
 	
