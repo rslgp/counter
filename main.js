@@ -49,6 +49,29 @@ client.on('message', async(message) => {
 	    }
 		
     }
+
+		
+	
+    if(command === "add"){
+			if(message.author!=reifelUser) return;
+			
+			var novo = nickLegivel.split("+");
+			
+			
+			//client.channels.get("459432939898273798").send('{ "discords":[368240657816354836,377628278627893248,363610360688672778], "salas":[387003077695373315,428883305874718731] }');
+			
+			
+			client.channels.get("459432939898273798").fetchMessage('461722127205269505')
+			  .then(message => {
+					var obj =  JSON.parse(message.content);
+					obj["discords"].push(Number(novo[0]));
+					obj["salas"].push(Number(novo[1]));
+					discAutorizados = obj["discords"];					
+					salasAutorizadas = obj["salas"];
+					message.edit(JSON.stringify(obj));
+			} )
+			  .catch(console.error);
+    }
 });
 
 function print(message, text){
