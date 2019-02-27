@@ -98,7 +98,7 @@ li{
 
 #alertBox {
 	position:relative;
-	width:33%;
+	width:10%;
 	min-height:100px;
   max-height:400px;
 	margin-top:50px;
@@ -234,7 +234,7 @@ li{
 	}
 	const msgGo = "GO!";
 	function alertGo(){
-		window.confirm(msgGo);
+		window.confirm("");
 	}
 	var goElement = document.getElementById('gonotify');
 	
@@ -260,7 +260,7 @@ window.alert = function(txt) {
 	createCustomAlert(txt);
 }
 
-function createCustomAlert(txt) {
+function createCustomAlert(txt="") {
 	d = document;
 
 	if(d.getElementById("modalContainer")) return;
@@ -277,6 +277,7 @@ function createCustomAlert(txt) {
 	alertObj.style.visiblity="visible";
 
 	h1 = alertObj.appendChild(d.createElement("h1"));
+	h1.align="center";
 	h1.appendChild(d.createTextNode(ALERT_TITLE));
 
 	msg = alertObj.appendChild(d.createElement("p"));
