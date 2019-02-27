@@ -146,8 +146,112 @@ li{
 
 
 </style>
-<body>
 
+<!-- sinal -->
+<style>
+.bulb {
+  height: 27px;
+  width: 55px;
+  background-color: grey;
+  border-radius: 50%;
+  margin: 25px auto;
+  /*transition: background 500ms;*/
+  display:inline-block;
+}
+
+.pulse {
+  box-shadow: 0 0 0 rgba(204,169,44, 0.4);
+  animation: none;
+}
+
+@-webkit-keyframes pulse {
+  0% {
+    -webkit-box-shadow: 0 0 0 0 rgba(204,169,44, 0.4);
+  }
+  70% {
+      -webkit-box-shadow: 0 0 0 10px rgba(204,169,44, 0);
+  }
+  100% {
+      -webkit-box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+  }
+}
+@keyframes pulse {
+  0% {
+    -moz-box-shadow: 0 0 0 0 rgba(204,169,44, 0.4);
+    box-shadow: 0 0 0 0 rgba(204,169,44, 0.4);
+  }
+  70% {
+      -moz-box-shadow: 0 0 0 10px rgba(204,169,44, 0);
+      box-shadow: 0 0 0 10px rgba(204,169,44, 0);
+  }
+  100% {
+      -moz-box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+      box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+  }
+}
+
+</style>
+	
+<script>
+
+const offColor="grey";
+const stop = document.getElementById('stopLight'), slow=document.getElementById('slowLight'), vai=document.getElementById('goLight');
+function vermelho() {
+  clearLights();
+  stop.style.backgroundColor = "red";
+  stop.style.animation = "pulse 1s infinite";
+}
+
+function amarelo() {
+  clearLights();
+  slow.style.backgroundColor = "yellow";
+  slow.style.animation = "pulse 1s infinite";
+}
+
+function verde(){
+	clearLights();
+	vai.style.backgroundColor = "green";
+	vai.style.animation = "pulse 1s infinite";
+}
+
+function clearLights() {
+  stop.style.backgroundColor = offColor;
+  slow.style.backgroundColor = offColor;
+  vai.style.backgroundColor = offColor;
+  stop.style.animation = "none";
+  slow.style.animation = "none";
+  vai.style.animation = "none";
+
+}
+
+var atual=1,b;
+function trocar(){
+if(atual==4) {clearInterval(b);atual=1;}
+	switch(atual++){
+		case 1:
+		vermelho();
+	break;
+		case 2:
+		amarelo();
+	break;
+		case 3:
+		verde();
+	break;
+		default: return;
+	}
+}
+
+function runSinal(){
+	b= setInterval(function(){trocar()},2356);
+	setTimeOut(function(){clearLights()}, 3000);
+}
+
+</script>
+
+<body>
+<div id="stopLight" class="bulb pulse"></div>
+<div id="slowLight" class="bulb pulse"></div>
+<div id="goLight" class="bulb pulse"></div>
     <section class="principal">
       <div class="text-center">
             <div class="heading-count">
