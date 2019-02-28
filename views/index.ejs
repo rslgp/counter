@@ -5,7 +5,13 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta http-equiv="Cache-control" content="public, max-age=7200">
 	<title>ReifelContador</title>
+	
 	<audio preload="auto" id="audiotag1" src="https://www.myinstants.com/media/sounds/galvao-homem.mp3"></audio>
+	<script>	
+	var audioElement = document.getElementById('audiotag1');
+	audioElement.load();
+	</script>
+	
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<!-- <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet"> -->
 </head>
@@ -250,21 +256,20 @@ li{
   </div>
 
 </footer>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.slim.js"></script>
 
-<script>
+<script>	
 	const audioGal = "https://www.myinstants.com/media/sounds/galvao-homem.mp3";
 	var socket = io.connect('https://reifelcontagem.herokuapp.com/');
 	
 	//var mySound = new Audio(audioGal);
 	//mySound.load();
 	
-	var audioElement = document.getElementById('audiotag1');
 	var isMobile = (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent));
 	
-	audioElement.load();
 	
 	errorHappens();
 	audioElement.addEventListener("ended", reload());
