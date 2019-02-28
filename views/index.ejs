@@ -385,7 +385,7 @@ function removeCustomAlert() {
 	document.getElementsByTagName("body")[0].removeChild(document.getElementById("modalContainer"));
 	
 	//reload page
-	window.location.href = window.location.origin;
+	//window.location.href = window.location.origin;
 }
 
 //sinal
@@ -421,7 +421,7 @@ function clearLights() {
 
 var atual=1,b;
 function trocar(){
-if(atual==4) {clearInterval(b);atual=1;}
+if(atual==4) {clearInterval(b);atual=1; window.location.href = window.location.origin; /*reload page*/}
 	switch(atual++){
 		case 1:
 		vermelho();
