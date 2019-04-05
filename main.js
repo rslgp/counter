@@ -9,6 +9,16 @@ const commandPrefix = "!";
 
 var discAutorizados, salasAutorizadas, reifelUser;
 
+client.on('guildCreate', guild => {
+	var idGuild = Math.round(message.guild.id), idSala;
+	if(idGuild!=363610360688672800){
+		if(!discAutorizados.includes(idGuild)){ //se cliente nao aplica
+			if(message.owner) message.owner.send("Não Autorizado por Reifel\r\n");
+			print(message,"Não Autorizado por Reifel\r\n"); message.guild.leave(); return;
+		}
+	}
+});
+
 client.on('ready', () => {
     app.startApp(client);
 	client.user.username="ReifelContagem";
@@ -28,14 +38,6 @@ client.on('ready', () => {
 
 client.on('message', async(message) => {
     if(message.author.bot) return;
-	
-	var idGuild = Math.round(message.guild.id), idSala;
-	if(idGuild!=363610360688672800){
-		if(!discAutorizados.includes(idGuild)){ //se cliente nao aplica
-			if(message.owner) message.owner.send("Não Autorizado por Reifel\r\n");
-			print(message,"Não Autorizado por Reifel\r\n"); message.guild.leave(); return;
-		}
-	}
 
     if(!message.content.startsWith(commandPrefix)) return;
     let command = message.content.toLowerCase().split(" ")[0];
