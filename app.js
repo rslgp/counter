@@ -47,3 +47,9 @@ exports.startApp = function (/**Object*/ client) {
 exports.play = function () {
 	io.sockets.emit('message', /* */);
 }
+
+io.on('connection', (socket) => {
+  console.log('a user connected');
+});
+
+
